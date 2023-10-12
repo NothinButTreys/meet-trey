@@ -7,7 +7,11 @@ import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { AiOutlineLoading } from "react-icons/ai";
 
-export default function ProfileForm({ setOpen }: { setOpen: any }) {
+export default function ProfileForm({
+    setOpen,
+}: {
+    setOpen: Dispatch<SetStateAction<boolean>>;
+}) {
     const { toast } = useToast();
     const router = useRouter();
     const [loading, setLoading] = useState(false);

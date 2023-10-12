@@ -12,7 +12,7 @@ import { useState } from "react";
 import ProfileForm from "@/app/profile/page";
 
 export default function ProfileSlideOut() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="flex">
