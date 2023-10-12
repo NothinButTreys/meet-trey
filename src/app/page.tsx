@@ -8,15 +8,16 @@ import ProfileSlideOut from "@/components/ProfileSlideOut";
 import { defaultProfile } from '@/util/defaultProfile';
 import connectMongoDB from "@/lib/mongodb";
 import Profile from "@/models/profile";
+import { IProfile } from './api/profile/route';
 
 const getProfile = async () => {
     await connectMongoDB();
-    const profile = await Profile.findOne();
+    const profile = (await Profile.findOne()) as IProfile;
     return profile;
 };
 
 export default async function Home() {
-    const { profile } = await getProfile();
+    const profile = await getProfile();
 
     return (
         <>
@@ -38,12 +39,12 @@ export default async function Home() {
                 >
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col gap-4">
-                            <div
+                            {profile && profile.image && (<div
                                 className="w-full mb-4 lg:mb-0 max-h-80 overflow-hidden bg-cover bg-no-repeat h-80 lg:bg-[center_center_-5rem] xl:bg-[center_-10rem]"
                                 style={{
-                                    backgroundImage: `url(${profile?.image})`,
+                                    backgroundImage: `url(${profile.image})`,
                                 }}
-                            ></div>
+                            ></div>)}
                             <h1
                                 className="px-4 lg:p-0 text-3xl md:text-5xl font-extrabold"
                                 id="home"

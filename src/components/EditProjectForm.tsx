@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 import { SheetClose } from "./ui/sheet";
+import { IProject } from "@/app/api/project/route";
 
 export default function EditProjectForm({
     title,
@@ -14,14 +15,7 @@ export default function EditProjectForm({
     description,
     image,
     _id: id,
-}: {
-    title: string;
-    company: string;
-    location: string;
-    description: string;
-    image: string;
-    _id: string;
-}) {
+}: IProject) {
     const router = useRouter();
     const [formData, setFormData] = useState({
         title,

@@ -3,12 +3,13 @@ import Project from "@/models/project";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
-interface Project {
+export interface IProject {
     title: string;
     company: string;
     location: string;
     description: string;
     image: string;
+    _id: string;
 }
 
 export async function POST(request: Request): Promise<Response> {

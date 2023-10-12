@@ -6,19 +6,11 @@ import EditProjectSlideOut from "./EditProjectSlideOut";
 import { Separator } from "@/components/ui/separator";
 import connectMongoDB from "@/lib/mongodb";
 import Project from "@/models/project";
-
-export interface Project {
-    title: string;
-    company: string;
-    location: string;
-    description: string;
-    image: string;
-    _id: string;
-}
+import { IProject } from "@/app/api/project/route";
 
 const getProjects = async () => {
     await connectMongoDB();
-    const projects: Project[] = await Project.find();
+    const projects: IProject[] = await Project.find();
     return projects;
 };
 
@@ -27,7 +19,7 @@ export default async function ProjectsList() {
 
     return (
         <div className="flex flex-col gap-20">
-            {projects.map((project: Project) => (
+            {projects.map((project: IProject) => (
                 <div
                     key={project._id}
                     className="w-full flex flex-col md:flex-row gap-4"

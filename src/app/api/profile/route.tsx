@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Profile from "@/models/profile";
 import connectMongoDB from "@/lib/mongodb";
 
-interface Profile {
+export interface IProfile {
     title: string;
     subTitle: string;
     description: string;

@@ -4,16 +4,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import connectMongoDB from "@/lib/mongodb";
 import Image from "next/image";
 import Project from "@/models/project";
+import { IProject } from "@/app/api/project/route";
 
 const getProjectById = async (id: string) => {
     await connectMongoDB();
-    const project = await Project.findOne({ id });
+    const project = await Project.findOne({ _id:id }) as IProject;
     return project;
 }
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
     const { id } = params;
-    const { project } = await getProjectById(id);
+    const project = await getProjectById(id);
 
     if(!project) {
         return (
