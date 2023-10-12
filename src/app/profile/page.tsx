@@ -8,7 +8,7 @@ import Image from "next/image";
 import { AiOutlineLoading } from "react-icons/ai";
 
 type IProfileForm = {
-    setOpen: Dispatch<SetStateAction<boolean>>;
+    setOpen: () => {};
 }
 
 export default function ProfileForm({ setOpen }: IProfileForm) {
