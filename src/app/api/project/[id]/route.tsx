@@ -25,13 +25,3 @@ export async function PUT(
         { status: 200 }
     );
 }
-
-export async function GET(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
-    const { id } = params;
-    await connectMongoDB();
-    const project = await Project.findOne({ _id: id });
-    return NextResponse.json({ project }, { status: 200 });
-}

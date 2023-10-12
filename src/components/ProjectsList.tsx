@@ -4,6 +4,8 @@ import Image from "next/image";
 import { IsAuthed } from "./IsAuthed";
 import EditProjectSlideOut from "./EditProjectSlideOut";
 import { Separator } from "@/components/ui/separator";
+import connectMongoDB from "@/lib/mongodb";
+import Project from "@/models/project";
 
 export interface Project {
     title: string;
@@ -15,20 +17,13 @@ export interface Project {
 }
 
 const getProjects = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project`, {
-        cache: "no-cache",
-    });
-
-    if (!res.ok) {
-        throw new Error("failed to fetch projects");
-    }
-
-    const projects = await res.json();
+    await connectMongoDB();
+    const projects: Project[] = await Project.find();
     return projects;
 };
 
 export default async function ProjectsList() {
-    const { projects } = await getProjects();
+    const projects = await getProjects();
 
     return (
         <div className="flex flex-col gap-20">

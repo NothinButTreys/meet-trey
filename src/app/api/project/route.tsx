@@ -28,12 +28,6 @@ export async function POST(request: Request): Promise<Response> {
     );
 }
 
-export async function GET() {
-    await connectMongoDB();
-    const projects: Project[] = await Project.find();
-    return NextResponse.json({ projects });
-}
-
 export async function DELETE(
     request: any
 ): Promise<Response> {

@@ -38,9 +38,3 @@ export async function POST(req: Request): Promise<Response> {
         { status: 200 }
     );
 }
-
-export async function GET() {
-    await connectMongoDB();
-    const profile = await Profile.findOne();
-    return NextResponse.json({ profile });
-}

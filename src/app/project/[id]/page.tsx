@@ -1,25 +1,17 @@
 import Navbar from "@/components/Navbar";
 import TechList from "@/components/TechList";
 import { Skeleton } from "@/components/ui/skeleton";
+import connectMongoDB from "@/lib/mongodb";
 import Image from "next/image";
+import Project from "@/models/project";
 
 const getProjectById = async (id: string) => {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/project/${id}`,
-        {
-            cache: "no-store",
-        }
-    );
-
-    if (!res.ok) {
-        throw new Error("failed to fetch project");
-    }
-
-    const project = await res.json();
+    await connectMongoDB();
+    const project = await Project.findOne({ id });
     return project;
 }
 
-export default async function Project({ params }: { params: { id: string } }) {
+export default async function ProjectPage({ params }: { params: { id: string } }) {
     const { id } = params;
     const { project } = await getProjectById(id);
 

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ResumeLink } from "./ResumeLink";
+import Project from "@/models/project";
+import connectMongoDB from "@/lib/mongodb";
 
 export interface Project {
     title: string;
@@ -7,20 +9,13 @@ export interface Project {
 }
 
 const getProjects = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project`, {
-        cache: "no-cache",
-    });
-
-    if (!res.ok) {
-        throw new Error("failed to fetch projects");
-    }
-
-    const projects = await res.json();
+    await connectMongoDB();
+    const projects: Project[] = await Project.find();
     return projects;
 };
 
 export default async function Navbar() {
-    const { projects } = await getProjects();
+    const projects = await getProjects();
 
     return (
         <div className="sticky top-0 py-4 px-2 bg-gray-800 rounded-xl w-full">
