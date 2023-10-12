@@ -35,15 +35,13 @@ export async function GET() {
 }
 
 export async function DELETE(
-    request: NextApiRequest & { nextUrl: URL }
-) {
-    if (request.nextUrl) {
-        const id = request.nextUrl.searchParams.get("id");
-        await connectMongoDB();
-        await Project.findByIdAndDelete(id);
-        return NextResponse.json(
-            { message: "Project deleted successfully" },
-            { status: 200 }
-        );
-    }
+    request: any
+): Promise<Response> {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectMongoDB();
+    await Project.findByIdAndDelete(id);
+    return NextResponse.json(
+        { message: "Project deleted successfully" },
+        { status: 200 }
+    );
 }
