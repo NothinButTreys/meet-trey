@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { AiOutlineLoading } from "react-icons/ai";
 
-interface IProfileForm {
+type IProfileForm = {
     setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
