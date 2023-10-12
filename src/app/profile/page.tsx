@@ -7,8 +7,8 @@ import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { AiOutlineLoading } from "react-icons/ai";
 
-type IProfileForm = {
-    setOpen: () => {};
+interface IProfileForm {
+    setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function ProfileForm({ setOpen }: IProfileForm) {
