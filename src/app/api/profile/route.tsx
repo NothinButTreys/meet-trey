@@ -10,7 +10,6 @@ interface Profile {
     imageAlt: string;
 }
 
-
 export async function POST(req: Request): Promise<Response> {
     const { title, subTitle, description, image, imageAlt } = await req.json();
     if (!title || !subTitle || !description || !image || !imageAlt) {

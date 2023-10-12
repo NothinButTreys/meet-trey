@@ -4,8 +4,8 @@ import TechList from "@/components/TechList";
 import Navbar from "@/components/Navbar";
 import { IsAuthed } from "@/components/IsAuthed";
 import AddProjectSlideOut from "@/components/AddProjectSlideOut";
-import Image from "next/image";
 import ProfileSlideOut from "@/components/ProfileSlideOut";
+import { defaultProfile } from '@/util/defaultProfile';
 
 const getProfile = async () => {
     const res = await fetch(`${process.env.BASE_URL}/api/profile`, {
@@ -53,14 +53,17 @@ export default async function Home() {
                                 className="px-4 lg:p-0 text-3xl md:text-5xl font-extrabold"
                                 id="home"
                             >
-                                {profile?.title}
+                                {(profile && profile.title) ||
+                                    defaultProfile.title}
                             </h1>
                             <h2 className="px-4 lg:p-0 text-xl md:text-3xl font-bold">
-                                {profile?.subTitle}
+                                {(profile && profile.subTitle) ||
+                                    defaultProfile.subTitle}
                             </h2>
                             <div className="px-4 lg:p-0 w-full">
                                 <p className="text-lg">
-                                    {profile?.description}
+                                    {(profile && profile.description) ||
+                                        defaultProfile.description}
                                 </p>
                             </div>
                         </div>
