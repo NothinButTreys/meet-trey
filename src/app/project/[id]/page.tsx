@@ -4,9 +4,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 
 const getProjectById = async (id: string) => {
-    const res = await fetch(`${process.env.BASE_URL}/api/project/${id}`, {
-        cache: "no-store",
-    });
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/project/${id}`,
+        {
+            cache: "no-store",
+        }
+    );
 
     if (!res.ok) {
         throw new Error("failed to fetch project");

@@ -6,28 +6,23 @@ import { IsAuthed } from "@/components/IsAuthed";
 import AddProjectSlideOut from "@/components/AddProjectSlideOut";
 import ProfileSlideOut from "@/components/ProfileSlideOut";
 import { defaultProfile } from '@/util/defaultProfile';
+import connectMongoDB from "@/lib/mongodb";
+import Profile from "@/models/profile";
 
 const getProfile = async () => {
-    const res = await fetch(`${process.env.BASE_URL}/api/profile`, {
-        cache: "no-cache",
-    });
-
-    if (!res.ok) {
-        throw new Error("failed to fetch profile");
-    }
-
-    const profile = await res.json();
+    await connectMongoDB();
+    const profile = await Profile.findOne();
     return profile;
 };
 
 export default async function Home() {
-    const { profile } = await getProfile();
+    const {profile} = await getProfile();
 
     return (
         <>
             <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden relative">
                 <div className="hidden lg:block md:w-1/3 lg:w-1/4 w-full flex-shrink flex-grow-0 p-4">
-                    <Navbar />
+                    {/* <Navbar /> */}
                     <TechList />
                     <div className="flex flex-row gap-2 items-center">
                         <IsAuthed>
@@ -69,7 +64,7 @@ export default async function Home() {
                         </div>
                     </div>
                     <div className="mt-20 px-4 lg:p-0">
-                        <ProjectsList />
+                        {/* <ProjectsList /> */}
                     </div>
                 </main>
             </div>
