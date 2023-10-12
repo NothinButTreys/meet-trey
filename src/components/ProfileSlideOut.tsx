@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/sheet";
 import { CgProfile } from "react-icons/cg";
 import { useState } from "react";
-import ProfileForm from "@/app/profile/page";
+import Profile from "@/app/profile/page";
+import ProfileForm from "./ProfileForm";
 
 export default function ProfileSlideOut() {
     const [open, setOpen] = useState<boolean>(false);
@@ -26,7 +27,9 @@ export default function ProfileSlideOut() {
                     <SheetTitle>Add Profile</SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col w-full h-full">
-                    <ProfileForm setOpen={setOpen} />
+                    <Profile>
+                        <ProfileForm setOpen={setOpen} />
+                    </Profile>
                 </div>
             </SheetContent>
         </Sheet>
