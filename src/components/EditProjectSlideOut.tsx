@@ -1,17 +1,15 @@
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
 import EditProjectForm from "./EditProjectForm";
-import { Project } from "./ProjectsList";
 import { HiPencilAlt } from "react-icons/hi";
 import { Button } from "./ui/button";
 import { Separator } from "@/components/ui/separator";
+import { IProject } from "@/app/api/project/route";
 
 export default function EditProjectSlideOut({
     title,
@@ -20,7 +18,7 @@ export default function EditProjectSlideOut({
     description,
     image,
     _id,
-}: Project) {
+}: IProject) {
     return (
         <Sheet>
             <SheetTrigger>
